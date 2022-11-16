@@ -1,0 +1,86 @@
+swagger: "2.0"
+info: 
+  title: Ajay Swagger UI Docs
+  description: This is my Assignment 11 on Node Js
+  version: 1.0
+  contact:
+    email: Ajaychandram4567@gmail.com
+  license:
+    name: Apache 2.0
+    url: "http://apache.org/"
+  servers:
+    -url: "http://localhost:3000/"
+    description: This is my local server
+    -url: "http://company.com"
+    description: This is my company server
+
+schemes: [http,https]
+
+paths:
+#Post json/body:
+  /register:
+    post:
+      summary: Posting Data
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          schema:
+            $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Ok
+
+  /login:
+    post:
+      summary: Posting Data
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          schema:
+            type: object
+            properties: 
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: Ok
+
+#File Upload
+  /upload:
+    post:
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: formData
+          name: file
+          type: file
+          required: true
+          description: File Upload
+      responses:
+        200:
+          description: Ok
+
+
+components:
+  schemas:
+    User:
+      type: object
+      properties: 
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
